@@ -1,0 +1,83 @@
+#+STARTUP: showall indent
+#+STARTUP: hidestars
+#+OPTIONS: H:3 num:nil tags:nil toc:nil timestamps:nil
+
+#+BEGIN_HTML
+---
+date: 2010-06-13
+title: pfSense Firewall.
+layout: post
+excerpt: "Setting up a pfSense with 1:1 NAT using an ADSL router in
+bridged mode."
+tags: [linux]
+category: blog
+comments: true
+---
+#+END_HTML
+
+I have a block of 6 ip addresses from my ISP. In order to use them I
+need a modem that offers a facility that is often called 1:1
+NAT. Originally I was using some sort of Zyxel Prestige modem, which
+was one of the few modem.routers that offered this facility. Whilst
+this router worked fine if used as a basic NAT router, it frequently
+fell over in a heap if I tried to use the 1:1 NAT features.
+
+So for a long time I have been using a standard modem/router, which
+just offered basic NAT. I have been bodging access to my various
+internal computers using port forwarding. Whilst this does work, it
+involves some horrible bodges if you want to do something like allow
+external access to two different web servers. Also since i had
+originally paid for a block of ip addresses I didn't want to waste
+them.
+
+Researching the possible options, I decided to try pfSense. This
+supports 1:1 NAT and has a simple to use web interface. You can
+install Squid as an addon package. I have been running Squid on one of
+my servers, which helps me to limit the children's internet access
+times. However, this has meant either setting the proxy server on each
+computer, or fiddling with some firewall rules to try and run it as a
+transparent proxy. Running Squid as a transparent proxy on my pfSense
+box, which also acts as a gateway is very simple and doesn't require
+any additional configuration on the other computers on my network.
+
+The initial challenge was to somehow get pfSense to connect to my
+ISP. The problem boiled down to trying to get one of my collection of
+ADSL routers to act in bridge mode. Essentially bridge mode disables
+all the router functions and the box acts as a simple ADSL  modem
+presenting a pppoe interface on one of its ethernet ports. I had a
+couple of modem/routers that were supposed to be able to work in
+bridge mode. Initially I tried my Thomson 585 Speedtouch into brdige
+mode using [[http://beusergroup.co.uk/technotes/index.php/Petes_Bridge_Template][this]] template. The template appeared to install, I had a
+bridged port on the first ethernet port and ports 2-4 and the WiFi
+were isolated from port 1. However, no matter what I tried I couldn't
+get pfSense's WAN interface to recognise the pppoe connection on the
+Thomson box.
+
+Next up I tried a Belkin wireless N router, model number
+F5D8631-4. This offers two bridge modes. I tried the 1483 mode, but
+couldn't establish a pppoe connection from pfSense. Finally I tried
+the "Bridge mode disable internet sharing" and lo and behold pfSense
+established a pppoe connection with the Belkin and thus to my ISP.
+
+Initially I wanted to set up the pfSense box using port forwarding,
+like my old system, until I was confident that everything was working
+correctly. pfSense makes this very simple. Defining a port forward
+rule in the NAT tab creates a matching firewall rule. Next up was
+installing Squid, which I did from the System/Packages menu. The web
+configuration interface for Squid doesn't support the full range of
+Squid options, specifically different acl's and restricting access to
+different groups of users at different times of day. However, you can
+add custom options and simply pasting the relevant bits of my existing
+squid.conf seemed to work.
+
+** Update.
+After spending several days searching the pfSense forums I wasn't able
+to get transparent proxying, with Squid on a different box to Squid,
+working. I was simply unable to make the firewall rule that redirected
+all traffic to port 80, that didn't originate on the pfSense box, back
+to my Squid box work. I followed several guides on the pfSense forum
+to try and achieve this, but none of them worked.
+
+This was a shame, as everything about pfSense worked really well for
+me. I have since started using [[http:/www.ebox-platform.com][eBox]] , which I'll write about in a
+separate post. I'll just say that so far it is working well.

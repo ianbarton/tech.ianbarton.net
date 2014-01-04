@@ -1,0 +1,51 @@
+#+STARTUP: showall indent
+#+STARTUP: hidestars
+#+INFOJS_OPT: view:info toc:nil ltoc:nil
+#+OPTIONS: H:2 num:nil tags:nil toc:nil timestamps:nil
+#+TITLE: Jodrell Bank.
+
+#+BEGIN_HTML
+---
+date: 2009-12-07
+layout: post
+category: blog
+title: Jodrell Bank.
+excerpt: "We don't live very far from the radio telescope at [[http://www.jb.man.ac.uk/][Jodrell Bank]]. The
+last time I visited was more than 10 years ago. However, yesterday our
+two girls were taking part in a gym competition very close to the
+telescope, so I took my son to have a look round."
+
+---
+#+END_HTML
+We don't live very far from the radio telescope at [[http://www.jb.man.ac.uk/][Jodrell Bank]]. The
+last time I visited was more than 10 years ago. However, yesterday our
+two girls were taking part in a gym competition very close to the
+telescope, so I took my son to have a look round.
+
+There is now a Visitor Centre with a cafe. However, many of the
+exhibits, like a small steerable model of the telescope, seem to have
+disappeared. You can walk most of the way around the dish and there
+are some informative posters. There is also a 3D film theatre showing
+a trip to Mars. Flying over the Martian landscape in 3D looked very
+realistic.
+
+However, overall I felt there was a missed opportunity to explain
+aspects of astronomy and a lack of "hands on" exhibits. Here's a small
+list of things that might be worth considering:
+
+- There is some interesting news about current research on the web
+  site, but no mention of it in the Visitor Centre.
+
+- Some simple experiments for children e.g. splitting light with a
+  prism. Finding out about infra-red by measuring the temperature in a
+  spectrum produced by a prism.
+
+- Some short talks on various aspects of astronomy. I can still
+  remember listening to a talk by Patrick Moore when I was at school
+  more than 40 years ago.
+
+- Information in the Visitor Centre about what the telescopes are
+  currently observing.
+
+- 2009 is an International Year of Astronomy, but there was no mention
+  of this in the Visitor Centre.

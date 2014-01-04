@@ -1,0 +1,45 @@
+#+STARTUP: showall indent
+#+STARTUP: hidestars
+#+OPTIONS: H:3 num:nil tags:nil toc:nil timestamps:nil
+
+#+BEGIN_HTML
+---
+date: 2012-02-10
+title: Solar Maximum and Minimum Thermometer
+layout: post
+summary: "A cheap Solar powered maximum and minimum thermometer."
+tags: [gear]
+category: blog
+comments: true
+---
+#+END_HTML
+
+
+I have often wondered how cold it got inside and outside my tent
+during the night. My Casio Protrek watch has a thermometer. However,
+this has a couple of disadvantages. Firstly the sensor is on the side
+of the watch, so if you are wearing it on your wrist it just measures
+your external body temperature. Secondly, it only shows the current
+temperature and not the maximum or minimum.
+
+#+BEGIN_HTML
+<div class="photofloatr">
+  <p><img src="/static/images/solar_thermometer.jpg" width="300"
+     alt="Helicopter"></p>
+  <p>Twin Rotor Helicopter</p>
+</div>
+#+END_HTML
+
+
+If you have a greenhouse, you are probably familiar with the "U"
+shaped spirit thermometer, which has a metal cylinder on each column
+to indicate the min and max temperature. These aren't very practical
+to carry around in your rucksack.
+
+Recently I saw a [[http://www.amazon.co.uk/Solar-Digital-Window-Thermometer-Greenhouse/dp/B004Z00Z56/ref%3Dsr_1_1?ie%3DUTF8&qid%3D1328887573&sr%3D8-1][Digital Solar Thermometer]] on Amazon. This displays
+the current temperature and the minimum and maximum. It's small and
+only weighs 15g. You can choose to display the temperature in either
+Celsius or Fahrenheit and there is a reset button, which resets the
+min and max display. As far as I can tell, the min and max will be
+reset after 24hrs automatically. Checking the temperature against
+another digital thermometer it seems to be accurate.

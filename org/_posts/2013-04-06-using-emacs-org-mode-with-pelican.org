@@ -1,0 +1,187 @@
+#+STARTUP: showall indent
+#+STARTUP: hidestars
+#+OPTIONS: H:3 num:nil tags:nil toc:nil timestamps:nil
+#+BEGIN_HTML
+---
+title: Blogging with Emacs org-mode and Pelican.
+date: 2013-04-06
+tags: [emacs, org-mode]
+category: blog
+---
+#+END_HTML
+
+#+BEGIN_HTML
+<!-- PELICAN_BEGIN_SUMMARY -->
+#+END_HTML
+Pelican is a static site generator written in Python. You can use any
+text editor to write posts. Pelican understands restructured text,
+Markdown, AsciiDo and YAML. For a list of Pelican's features please
+refer to the Pelican [[https://pelican.readthedocs.org/en/3.1.1/][documentation]] .
+
+
+#+BEGIN_HTML
+<!-- PELICAN_END_SUMMARY -->
+#+END_HTML
+
+
+* What is Pelican?
+Pelican is a static site generator written in Python. You can use any
+text editor to write posts. Pelican understands restructured text,
+Markdown, AsciiDo and YAML. For a list of Pelican's features please
+refer to the Pelican [[https://pelican.readthedocs.org/en/3.1.1/][documentation]] .
+
+* Writing a Blog Post in org-mode.
+Writing blog posts using org-mode is very straightforward. You can
+use a capture template to generate a skeleton file for the post. A
+typical org file for a post would look like:
+
+#+BEGIN_SRC emacs-lisp
+(defun capture-pelican-draft-file (path)
+  (let ((name (read-string "Name: ")))
+    (expand-file-name (format "%s-%s.org"
+                              (format-time-string "%Y-%m-%d")
+                              name) path)))
+(setq org-capture-templates `(
+
+("p"
+   "New blog post"
+   plain
+   (file (capture-pelican-draft-file  "~/Documents/emacs/web_sites/ianbarton/org/_posts"))
+   "#+STARTUP: showall indent\n#+STARTUP: hidestars\n#+OPTIONS: H:2 num:nil tags:nil toc:nil timestamps:nil\n#+BEGIN_HTML\n---\ntitle:\nsummary:\ndate:\ntags:\ncategory: blog\n---\n#+END_HTML\n\n")
+))
+
+#+END_SRC
+
+The YAML tags are enclosed in the "---" section at the top of the
+document. Note the yaml front matter must be the first thing in the
+published document. The body part of your post can contain anything
+that the org-mode html exporter can convert to html. Additionally,
+you can insert inline html using the #+begin_html markup.
+
+** An Example org-mode Capture Template for New Blog Posts:
+
+#+BEGIN_SRC emacs-lisp
+(defun capture-pelican-draft-file (path)
+  (let ((name (read-string "Name: ")))
+    (expand-file-name (format "%s-%s.org"
+                              (format-time-string "%Y-%m-%d")
+                              name) path)))
+
+(setq org-capture-templates `(
+("p"
+   "New blog post"
+   plain
+   (file (capture-pelican-draft-file  "~/Documents/emacs/web_sites/ianbarton/org/_posts"))
+   "#+STARTUP: showall indent\n#+STARTUP: hidestars\n#+OPTIONS: H:2 num:nil tags:nil toc:nil timestamps:nil\n#+BEGIN_HTML\n---\ntitle:\nsummary:\ndate:\ntags:\ncategory: blog\n---\n#+END_HTML\n\n")
+
+))
+#+END_SRC
+
+
+* Publishing Your Project.
+For more details of the org publishing process see [[http://orgmode.org/worg/org-tutorials/org-publish-html-tutorial.html][this]] tutorial on
+Worg. Note I am using the new exporter engine and recent git version
+of org.  Bastien has only recently added :html-extension support for
+the new exporter. My org-publish-project-alist is shown below. The
+only unusual part is :html-extension "yml", which ensures that all
+published files have a "yml" extension.
+
+The publishing process will output the yaml formatted files into a
+directory where Pelican can find them.
+
+Once you have written your new blog post, just publish your project
+from with org-mode.
+
+** An Example org-mode Publishing Setup.
+
+#+BEGIN_SRC emacs-lisp
+(require 'ox-html)
+(setq org-publish-project-alist
+      '(
+
+  ("org-ianbarton"
+          :base-directory "~/Documents/emacs/web_sites/ianbarton/org/_posts"
+          :base-extension "org"
+          :publishing-directory "~/Documents/emacs/web_sites/ianbarton/pelican/blog/content"
+          :recursive t
+          :publishing-function org-html-publish-to-html
+          :headline-levels 4             ; Just the default for this project.
+          :auto-preamble t
+          :auto-index f
+          :html-extension "yml"
+          :auto-preamble t
+          :body-only t
+    )
+
+  ("org-static-ian"
+          :base-directory "~/Documents/emacs/web_sites/ianbarton/org/_posts"
+          :base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg\\|swf\\|php"
+          :publishing-directory "~/Documents/emacs/web_sites/ianbarton/pelican/blog/content"
+          :recursive t
+          :publishing-function org-ox-publish-attachment)
+
+
+    ("ianbarton" :components ("org-ianbarton" "org-static-ian"))
+      ))
+#+END_SRC
+
+* The Pelican yaml Importer.
+Pelican doesn't support importing yaml formatted files. You will need
+to patch the Pelican readers.py file. Just pasting the following code
+blocks to the end of the file should work. Alternatively, you can
+obtain the code from my [[https://github.com/geekinthesticks/pelican][Github]] fork of Pelican. Note my changes are
+in the yaml branch, so you need to do:
+
+#+BEGIN_SRC sh
+git checkout yaml
+#+END_SRC
+
+once you have cloned the repo.
+
+#+BEGIN_SRC python
+try:
+    import yaml
+    Yaml = True # NOQA
+except ImportError:
+    Yaml = False # NOQA
+
+#+END_SRC
+
+#+BEGIN_SRC python
+class YamlReader(Reader):
+    enabled = bool(Yaml)
+    file_extensions = ['yml']
+    def read(self, filename):
+        """Parse content and metadata of YAML files"""
+        raw = open(filename).read()
+        docs = []
+        metadata = {}
+        raw_doc = raw.split('---')
+        docs.append(yaml.load(raw_doc[1]))
+
+        md = docs[0]
+
+        # yaml returns date as a datetime.datetime object.
+        # We need to turn this back into a string.
+        md['date'] = md['date'].strftime('%Y-%m-%d')
+
+        for key, value in md.items():
+            name = key.lower()
+            # Process article tags.
+            if name == "tags":
+                tags = ''
+                for item in value:
+                    tags = tags + ", " + unicode(item)
+                metadata[name] = self.process_metadata(name, tags)
+            else:
+                metadata[name] = self.process_metadata(name, unicode(value))
+
+        udata = raw_doc[2].decode("utf-8")
+        # asciidata = udata.encode("ascii", "ignore")
+        return udata, metadata
+
+#+END_SRC
+
+* Run Pelican.
+When you have published your org project just run Pelican to update
+your blog!

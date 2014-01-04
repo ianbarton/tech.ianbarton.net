@@ -1,0 +1,26 @@
+#+STARTUP: showall indent
+#+STARTUP: hidestars
+#+OPTIONS: H:2 num:nil tags:nil toc:nil timestamps:nil
+#+BEGIN_HTML
+---
+title: Happy New Yaer!
+layout: post
+date: 2014-01-01
+tags: [blog]
+category: blog
+---
+#+END_HTML
+
+
+#+BEGIN_HTML
+<!-- PELICAN_BEGIN_SUMMARY -->
+#+END_HTML
+Happy New Year and welcome to my new blog.
+
+#+BEGIN_HTML
+<!-- PELICAN_END_SUMMARY -->
+#+END_HTML
+
+Happy New Year and welcome to my new blog. I have decided to fork this
+blog from my old [[http://ian-barton.com][blog]] which deals mostly with mountaineering, cycling
+and general outdoor activities.

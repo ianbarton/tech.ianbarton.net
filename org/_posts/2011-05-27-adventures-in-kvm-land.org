@@ -1,0 +1,68 @@
+#+STARTUP: showall indent
+#+STARTUP: hidestars
+#+OPTIONS: H:3 num:nil tags:nil toc:nil timestamps:nil
+
+#+BEGIN_HTML
+---
+date: 2011-05-27
+title: Adventures in KVM Land
+layout: post
+tags: [linux]
+summary: "Moving my virtual machines from Xen on Debian to KVM on Ubuntu."
+category: blog
+
+---
+#+END_HTML
+
+For a couple of years I have been using [[http://wiki.debian.org/Xen][Xen]] on my file server to run
+various Linux virtual computers. Initially I started by running it on
+Ubuntu, but when Ubuntu dropped support for Xen kernels, I moved to
+Debian Lenny and then Debian Squeeze.
+
+Recently I bought a couple of HP Proliant [[http://h10010.www1.hp.com/wwpc/us/en/sm/WF05a/15351-15351-4237916-4237918-4237917-4248009.html][Microservers]] . One of these
+was to replace my current server and the other to use as a firewall
+and run a couple of VM's. Transferring my main Xen server to the new
+box was easy. However, have been having problems setting up my
+firewall box.
+
+My firewall box has two wthernet cards. One connected to my internal
+network and the other connected to an ADSL modem. Installing Squeeze
+and Xen worked fine, up to the point when I tried to configure
+pppoe. The configuration went OK, but when I rebooted Xen complained
+about eth1 (my internal interface) being busy or unavailable. The Xen
+wiki suggests removing all non essential ipv4 settings from your
+/etc/network/interfaces. However, mine was already pretty bare and
+basically identical to that on my other Microserver, which was working
+fine.
+
+After re-installs I established that booting with the standard debian
+kernel worked fine. Both eth1 and my ADSL interface were initialized
+correctly. However, rebooting into the Xen kernel gave the same
+problem with errors about eth1 being busy or unavailable. he thing
+that caused the errors was configuring the pppoe interface. if I left
+it unconfigured everything worked correctly. Finally I decided that
+for whatever reason I wasn't going to be able to get Xen to work in
+this configuration.
+
+I have never tried the virtualization already built into the Linux
+kernel (KVM), but decided to experiment to see how it worked for my
+requirements. Initially I tried installing Lucid, but ran into a
+problem where the installer couldn't install grub2 on my RAID1 boot
+disks. Rather fed up with problems by now I went with the latest Natty
+server, which installed without a problem.
+
+There are several good documents about setting up KVM in Ubuntu:
+
+- [[http://www.howtoforge.com/virtualization-with-kvm-on-ubuntu-10.10][HowToForge]]
+- Ubuntu [[https://help.ubuntu.com/8.04/serverguide/C/ubuntu-vm-builder.html][vm-builder]]
+- KVM [[https://help.ubuntu.com/community/KVM/Networking#Network%20Bridge%20Does%20Not%20Appear%20in%20Virt-Manager][networking]]
+- General Ubuntu [[https://help.ubuntu.com/community/KVM][KVM]] documentation
+- [[https://help.ubuntu.com/community/KVM/Installation][Installing]] KVM on Ubuntu
+
+After correcting an initial configuration error, I soon had bridged
+networking and a test VM with Ubuntu Lucid up and running.
+
+Having successfully set up KVM, I think that I shall probably migrate
+my Debain Xen server to Ubuntu using KVM. Although Xen is working fine
+on that server, I don't really want to have to maintain two different
+network virtualization technologies.

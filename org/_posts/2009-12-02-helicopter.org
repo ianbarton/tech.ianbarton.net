@@ -1,0 +1,37 @@
+#+STARTUP: showall indent
+#+STARTUP: hidestars
+#+OPTIONS: H:2 num:nil tags:nil toc:nil timestamps:t
+#+BEGIN_HTML
+
+---
+date: 2009-12-02
+layout: post
+tags: [ gadgets]
+category: blog
+title: Model Helicopter
+
+excerpt: "Having three young children is always a useful excuse for buying new
+toys. Last week I was looking around our local model shop and the
+owner was flying a small twin rotor plastic helicopter around the
+shop. Anyway I couldn't resist and ended up buying one."
+
+---
+#+END_HTML
+* Indoor Helicopters.
+Having three young children is always a useful excuse for buying new
+toys. Last week I was looking around our local model shop and the
+owner was flying a small twin rotor plastic helicopter around the
+shop. Anyway I couldn't resist and ended up buying one.
+
+#+BEGIN_HTML
+<div class="photofloatr">
+  <p><img src="/static/images/helicopter.jpg" width="200"
+     alt="Helicopter"></p>
+  <p>Twin Rotor Helicopter</p>
+</div>
+#+END_HTML
+
+The model we bought is the same as [[https://shop.graupner.de/webuerp/servlet/AI%3FARTN%3D4483][this]] one. It was surprisingly easy
+to learn to fly. You can fly for about 10 minutes with a single charge
+of the built in rechargeable battery. The only problem is getting it
+away from the children long enough for me to be able to fly it!

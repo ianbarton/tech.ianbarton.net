@@ -1,0 +1,60 @@
+#+STARTUP: showall indent
+#+STARTUP: hidestars
+#+OPTIONS: H:3 num:nil tags:nil toc:nil timestamps:nil
+
+#+BEGIN_HTML
+---
+date: 2010-12-13
+title: Nokia C6-01 Smartphone.
+layout: post
+excerpt:
+category: blog
+comments: true
+excerpt: "My new smartphone, a replacement for my Nokia 5800."
+---
+#+END_HTML
+
+I have owned a Nokia 5800 for more than a year and have been very
+happy with it. However, a recent disaster meant that I ended up with
+two wrecked 5800 phones. I wanted to replace it with something similar
+and began looking around to see what was available. Browsing the
+[[http://www.allaboutsymbian.com][allaboutsymbian]] site I found a detailed review of the Nokia [[http://www.allaboutsymbian.com/reviews/item/12297_Nokia_C6_part_1-.php][C6-01]]
+. This looked as though it would fit my requirements, but it wasn't
+yet available to buy. So I spent about a month using my old E61. For a
+four year old phone this performs very well. I installed the Symbian
+Podcatcher, which made it easy to download and listen to  my podcast
+subscriptions. There is a version of Ovi maps available for the E61,
+but this is very slow on the E61. The only other thing I really missed
+was having a camera on the phone.
+
+I had pre-ordered my C6-01 from [[http://www.expansys.com][Expansys]] and a couple of days ago I
+got notification that stock had arrived. I have now had the C6-01 for
+a couple of days and so far am very impressed:
+
+- Screen: this is an active matrix OLED and a definite improvement on
+  the 5800, with brighter and more saturated colours. It also performs
+  better outside in bright sunlight.
+- Multiple home screens: I haven't really set these up properly, but I
+  can see this feature being very useful. I can set up different home
+  screens for messaging, Internet and multimedia.
+- Camera: after the E61 it's good to have a camera with me all the
+  time. Although quality isn't as good as a dedicated camera, it's
+  fine for casual shots when I don't have my "proper" camera with me.
+- Music player: I don't listen to much music, but am an avid podcast
+  listener. I am glad to see that Nokia have re-instated the "Recently
+  added" list. I use this a lot to play new podcasts without having to
+  remember what I have downloaded. Currently the music player can
+  download podcasts, but the [[http://developer.symbian.org/wiki/Podcatcher_package][Symbian podcatcher]] does an excellent job.
+- Videos: I often watch TV programs transcoded from my [[http://www.mythtv.org][MythTV]] box in
+  h264 format. Some devices have problems playing h264, but the C6-01
+  handles my recordings OK.
+- Capacitive keyboard: I am having trouble with this at the
+  moment. Often the pop up that shows which key you have pressed is
+  hidden by my finger. I have slim fingers, but am having trouble
+  hitting keys accurately. However, I have the sam trouble with my
+  son's iPod, so I think its just a matter of practise.
+- Battery life: I have really stressed the phone yet. However, it
+  easily makes it through a day with plenty of charge left.
+- Email: I got syncing with Google contacst and Gmail working with no
+  problems. After a bit of a faff I did manage to get it to talk to my
+  standard imap4 server.

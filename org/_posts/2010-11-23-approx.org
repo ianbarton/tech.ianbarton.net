@@ -1,0 +1,91 @@
+#+STARTUP: showall indent
+#+STARTUP: hidestars
+#+OPTIONS: H:3 num:nil tags:nil toc:nil timestamps:nil
+
+#+BEGIN_HTML
+---
+date: 2010-11-23
+title: Approx Package Caching.
+layout: post
+excerpt:
+tags: [linux]
+category: blog
+comments: true
+---
+#+END_HTML
+
+We have quite a lot of computers running Ubuntu/Debian, which means
+that we use a lot of bandwidth downloading new packages and security
+updates. In the past I have created local mirrors of some of the
+Ubuntu packages. However, this is probably just as bandwidth
+unfriendly and seemed prone to breakage.
+
+Recently I read about [[http://git.debian.org/?p%3Dpkg-ocaml-maint/packages/approx.git][approx]] which is a caching proxy server for
+Debian and Ubuntu. You change the /etc/apt/sources.list on your
+computers to point the machine running approx. When a computer
+on your network downloads or updates a package approx will check to
+see if the package is in its cache. If the package is cached approx
+will serve it to the computer requesting it and if the package isn't
+in the cache it is downloaded and stored there before being served to
+the computer on your network that requested it. So, if you have a
+whole bunch of computers on your network doing updates, the majority
+of those requests will be served from the approx cache. The package is
+only downloaded once from the Ubuntu servers.
+
+You can also set up Squid to work in a similar way. However, this is
+more complicated, especially if you are already using Squid as a
+proxy server on your network.
+
+** Installation and Configuration.
+Installation is simply a matter of:
+
+#+BEGIN_SRC emacs-shell
+  sudo apt-get install approx
+#+END_SRC
+
+The configuration file is stored in /etc/approx/approx.conf. The default
+location of cached packages is /var/cache/approx. Since I have limited
+space on the drive containing "/", I created a symlink to a drive with
+more space.
+
+My approx.conf looks like this:
+
+#+BEGIN_SRC emacs-shell
+  # Main ubuntu packages and security updates.
+  ubuntu                http://gb.archive.ubuntu.com/ubuntu/
+  ubuntusecurity        http://security.ubuntu.com/ubuntu
+
+  # ppa
+  ppa                   http://ppa.launchpad.net
+
+#+END_SRC
+
+On my workstations I modify /etc/apt/sources.list to look like this:
+
+#+BEGIN_SRC emacs-shell
+  deb http://banter.bantercat.co.uk:9999/ubuntu/ maverick main
+  restricted
+  deb http://banter.bantercat.co.uk:9999/ubuntu/ maverick-updates main
+  restricted
+  deb http://banter.bantercat.co.uk:9999/ubuntu/ maverick universe
+  deb http://banter.bantercat.co.uk:9999/ubuntu/ maverick-backports
+  main restricted universe multiverse
+
+  deb http://banter.bantercat.co.uk:9999/ubuntusecurity
+  maverick-security universe
+
+  deb http://banter.bantercat.co.uk:9999/ubuntusecurity
+  maverick-security multiverse
+
+  deb http://banter.bantercat.co.uk:9999/ubuntu/ maverick-proposed restricted main multiverse universe
+#+END_SRC
+
+Note that banter.bantercat.co.uk is the address of my server that has
+approx installed and 9999 is the default port that approx listens for
+requests.
+
+*** Some more useful tips:
+- approx comes with daily and weekly cron jobs to stop your cache overflowing.
+- You can use approx-import to import any existing packages that you
+  may have already downloaded. These are usually found in
+  /var/cache/apt/archives.

@@ -1,0 +1,43 @@
+#+STARTUP: showall indent
+#+STARTUP: hidestars
+#+OPTIONS: H:3 num:nil tags:nil toc:nil timestamps:nil
+
+#+BEGIN_HTML
+---
+date: 2010-10-17
+title: Shorewall Firewall, Squid and Privoxy Proxies.
+layout: post
+summary: "Moving to a new firewall. Installing Squid 3.0 and Privoxy."
+tags: [linux]
+comments: true
+category: blog
+---
+#+END_HTML
+
+In my continuing quest for the perfect firewall for my requirements, I
+have moved from eBox - recently renamed [[http://www.zentyal.org/][Zentyal]] to [[http://www.shorewall.net][Shorewall]] . The
+problem with Zentyal was that I was only using a tiny portion of its
+capabilities. It isn't just a firewall, but has mail, gateway and a
+whole host of other things available. As a result I had loads of
+processes running on the Epia box that runs my firewall, that were
+consuming resources, but not doing anything useful. Also, I wanted to
+kae some Squid customizations and run Privoxy in combination with
+Squid, which wasn't possible using Zentyal.
+
+So I went back to a basic Ubuntu Lucid install and the got Shorewall
+from the repositories. I followed the Two Interface guide and soon I
+had a functioning firewall. I installed Squid 3.0 and set up a
+transparent proxy for the network. Once I had Squid working, I
+installed Privoxy, mainly so I could have network wide ad-blocking
+without having to install AdBlock on every computer.
+
+In order to get Squid to use Privoxy as a cache peer, I added the
+following to the end of my squid.conf:
+
+#+BEGIN_SRC emacs-shell
+  # Use privoxy as a cache peer.
+  cache_peer 127.0.0.1 parent 8118 7 no-query
+
+  # Forward all the rest to Privoxy
+  never_direct allow all
+#+END_SRC

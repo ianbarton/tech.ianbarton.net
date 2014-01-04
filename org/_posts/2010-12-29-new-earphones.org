@@ -1,0 +1,70 @@
+#+STARTUP: showall indent
+#+STARTUP: hidestars
+#+OPTIONS: H:3 num:nil tags:nil toc:nil timestamps:nil
+
+#+BEGIN_HTML
+---
+date: 2010-12-29
+title: Ultimate Ears Metro Fi 220.
+layout: post
+excerpt:
+tags: [gadgets]
+category: blog
+comments: true
+excerpt: "New earphones to replace my old pair that failed after only
+a year."
+---
+#+END_HTML
+
+In November 2009 I bought a pair of Ultimate Ears Metro.Fi 220 Noise
+Isolating Earphones from [[http://www.advancedmp3players.co.uk][Advancedmp3players]]. I have been very happy
+with these, but a week or so ago, I noticed that I was listening in
+mono. After a few tests it turns out that the left channel was almost
+muted. I tried the earphones on a few different devices, so it was
+definitely an earphone problem, not an audio player problem. I take
+care of my earphones and these weren't cheap (around £30), so I was
+annoyed that they lasted just over a year. They have a nice little
+slider on the part where the earpieces split from the main cable. You
+can push this up to keep the two earpieces together when you are not
+using the earphones, which helps to stop them tangling. The earpiece
+for the right hand channel was a different colour, which meant it was
+easy to get the correct channel in the correct ear.
+
+Thinking about getting a new pair, I realized that almost everything
+I listen to is speech (Podcasts, Audiobooks, radio recordings), so
+getting earphones with outstanding music performance was a waste of
+money. The natty little slider thing was very useful, so I wanted my
+new pair to have this feature. I prefer in ear noise isolating phones
+and interchangeable buds, so I could get a got fit were essential
+features.
+
+I was out on my bike and on a whim dropped into Argos to see what they
+had available. Browsing through the catalogue I saw some Sony
+MDR-EX35LP earphones. These had the little slider widgets and came
+with interchangeable ear buds. There was also a cord tidy included,
+although I already have several [[http://www.proporta.com][Proporta]] ones. Even better they were
+reduced from £19.99 to £9.99. The phones I had before the Ultimate
+ears pair were Sony and lasted much longer than a year. A few minutes
+later I was happily cycling away from Argos listening to a Podcast
+through both ears.
+
+** Ultimate Ears Update.
+After doing some Googling, I discovered that my Ultimate Ears had a
+two year warranty. More Googling revealed that Ultimate Ears were
+owned by Logitech and I finally landed at Logitech's Customer Support
+Page.
+
+I filled in the form explaining that my left earpiece was broken and
+submitted it. Later on that day I received a reply asking me for proof
+of purchase. Luckily it was an on line purchase, so I had a record of
+the transaction which I forwarded to Logitech. Almost immediately I
+received a reply saying that they no longer had the Metro Fi 220
+earphones, but offering me a choice of two other pairs. I chose the
+Ultimate Ears™ 200 Noise-Isolating Earphones. Within a couple of hours
+I received another email saying that the new pair would be dispatched
+soon. Logitech didn't even want me to return the old pair. So well
+done Logitech for excellent customer service.
+
+I received the new earphones a couple of days after dispatch and they
+every bit as good as the old pair. I will be using the Sony earphones
+as a spare pair in future.
