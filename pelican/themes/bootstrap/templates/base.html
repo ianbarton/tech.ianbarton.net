@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>{% block windowtitle %}{{ SITENAME }}{% endblock %}</title>
+	<meta name="description" content="">
+	<meta name="author" content="{{ AUTHOR }}">
+
+	<!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+	<!--[if lt IE 9]>
+		<script src="{{ SITEURL }}/theme/html5.js"></script>
+	<![endif]-->
+
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+
+        <script type="text/javascript"
+        src="/theme/fancybox2/lib/jquery.mousewheel-3.0.6.pack.js"></script>
+
+        <!-- Add fancyBox main JS and CSS files -->
+	<script type="text/javascript" src="/theme/fancybox2/source/jquery.fancybox.js"></script>
+	<link rel="stylesheet" type="text/css" href="/theme/fancybox2/source/jquery.fancybox.css" media="screen" />
+
+	<!-- Add Button helper (this is optional) -->
+	<link rel="stylesheet" type="text/css" href="/theme/fancybox2/source/helpers/jquery.fancybox-buttons.css?v=2.0.4" />
+	<script type="text/javascript" src="/files/js/fancybox2/source/helpers/jquery.fancybox-buttons.js?v=2.0.4"></script>
+
+        <!-- Add Thumbnail helper (this is optional) -->
+        <link rel="stylesheet" type="text/css" href="/theme/fancybox2/source/helpers/jquery.fancybox-thumbs.css?v=2.0.4" />
+	<script type="text/javascript" src="/theme/fancybox2/source/helpers/jquery.fancybox-thumbs.js?v=2.0.4"></script>
+
+        <script type="text/javascript">
+
+          $(document).ready(function() {
+			/*
+			*   Examples - images
+			*/
+
+			$("a#simpletitle").fancybox({
+                            'titlePosition'	: 'inside'
+                        });
+
+
+          $(".fancybox-thumb").fancybox({
+		prevEffect	: 'none',
+		nextEffect	: 'none',
+		helpers	: {
+			title	: {
+				type: 'outside'
+			},
+			overlay	: {
+				opacity : 0.8,
+				css : {
+					'background-color' : '#000'
+				}
+			},
+			thumbs	: {
+				width	: 50,
+				height	: 50
+			}
+		}
+	  });
+
+		});
+	</script>
+
+        <meta name="viewport" content="width-device-width,
+                                       initial-scale-1.0">
+        <link href="{{ SITEURL }}/theme/bootstrap-responsive.css" rel="stylesheet">
+
+
+        <!-- Le styles -->
+	<link href="{{ SITEURL }}/theme/bootstrap.min.css" rel="stylesheet">
+	<link href="{{ SITEURL }}/theme/local.css" rel="stylesheet">
+	<link href="{{ SITEURL }}/theme/pygments.css" rel="stylesheet">
+	{% include "analytics.html" %}
+	{% include "disqus.html" %}
+</head>
+<body>
+
+	<div class="topbar">
+	  <div class="topbar-inner">
+		<div class="container-fluid">
+		  <a class="brand" href="{{ SITEURL }}/index.html">{{ SITENAME }}</a>
+			<ul class="nav">
+				{% for title, link in MENUITEMS %}
+					<li><a href="{{ link }}">{{ title }}</a></li>
+				{% endfor %}
+				{% if DISPLAY_PAGES_ON_MENU %}
+					{% for page in PAGES %}
+						<li><a href="{{ SITEURL }}/{{ page.url }}">{{ page.title }}</a></li>
+					{% endfor %}
+				{% endif %}
+				{% for cat, null in categories %}
+					<li {% if cat == category %}class="active"{% endif %}><a href="{{ SITEURL }}/{{ cat.url }}">{{ cat }}</a></li>
+				{% endfor %}
+			</ul>
+			<p class="pull-right"><a href="{{ SITEURL
+			}}/archives.html">[archives]</a> <a href="{{
+			SITEURL }}/tags.html">[tags] <a href="{{ SITEURL }}/about.html">[about]</a></p>
+		</div>
+	  </div>
+	</div>
+
+	<div class="container-fluid">
+	  <div class="sidebar">
+		<div class="well">
+			<h3>Blogroll</h3>
+			<ul>
+				{% for name, link in LINKS %}
+				<li><a href="{{ link }}">{{ name }}</a></li>
+				{% endfor %}
+			</ul>
+			<div class="social">
+			<h3>Social</h3>
+			<ul>
+				{% for name, link in SOCIAL %}
+				<li><a href="{{ link }}">{{ name }}</a></li>
+				{% endfor %}
+			</ul>
+			</div>
+		</div>
+	  </div>
+	  <div class="content">
+			{% block indextitle %}<div class="page-header"><h1>{% block title %} {{ self.windowtitle() }} {% endblock %}</h1></div>{% endblock %}
+			{% block content %}{% endblock %}
+		<footer>
+		  <p> Powered by <a href="http://alexis.notmyidea.org/pelican/">Pelican</a>, theme based on <a href="http://twitter.github.com/bootstrap/">Bootstrap, from Twitter</a>.</p>
+		  <p>&copy; {{ AUTHOR }} 2012</p>
+		</footer>
+	  </div>
+
+	</div>
+</body>
+</html>
