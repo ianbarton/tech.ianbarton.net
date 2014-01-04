@@ -1,0 +1,50 @@
+#+STARTUP: showall indent
+#+STARTUP: hidestars
+#+OPTIONS: H:2 num:nil tags:nil toc:nil timestamps:nil
+#+BEGIN_HTML
+---
+title: USB Charger for iPads, Nexus Tablets and Smartphones.
+summary: A five port usb recharger that works with any device.
+date: 2014-01-04
+tags: [gadgets]
+category: blog
+---
+#+END_HTML
+
+#+BEGIN_HTML
+<div class="photofloatr">
+<a class="fancybox-thumb" rel="fancybox-thumb"  title="Anker multi port recharger." href="/images/anker_recharger/anker1.jpg"><img
+ width="200" alt="Anker multi port recharger." title="Anker multi port recharger." src="/images/anker_recharger/thumb.anker1.jpg" /></a>
+
+</div>
+#+END_HTML
+
+
+Like most people I and my family have multiple gadgets that require
+recharging at regular intervals. In recent years most gadgets can be
+recharged via a micro usb cable. However, not all charger plugs are
+equal. Many don't supply sufficient output to recharge things like
+iPads and Kindles. So if you want to recharge an iPad something like a
+Kindle recharging plug isn't going to work. What I really wanted was a
+single device that would recharge any of our gadgets, preferably more
+than one at a time.
+
+#+BEGIN_HTML
+<div class="photofloatl">
+<a class="fancybox-thumb" rel="fancybox-thumb"  title="Anker multi port recharger." href="/images/anker_recharger/anker2.jpg"><img
+ width="200" alt="Anker multi port recharger." title="Anker multi port recharger." src="/images/anker_recharger/thumb.anker2.jpg" /></a>
+
+</div>
+#+END_HTML
+
+Browsing Amazon I can across the  [[http://www.amazon.co.uk/gp/product/B00EJA28ES/ref%3Doh_details_o05_s00_i00?ie%3DUTF8&psc%3D1][Anker]] 25W 5A 5-Port USB Wall
+Charger. This small device has five usb ports that will recharge
+almost any gadget that can be charged via micro usb. Two of the ports
+output 2.1 amps and will recharge anything including iPads, Nexus 7's
+and Kindle Fires. The two 1 amp outputs will recharge most smartphones
+and the 1 amp port will also charge many smartphones, albeit at a
+slower rate. I have tested this device simultaneously recharging an
+iPad, a Nexus 7 and a Samsung Galaxy 2. I can see it being very useful
+on holiday, when I only need to remember to take the Anker and five
+micro usb cables, which will recharge any of our gadgets. No more
+searching around for device specific usb plugs.
