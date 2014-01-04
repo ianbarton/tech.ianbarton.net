@@ -26,3 +26,4 @@
 /pelican/blog/pages/books/*.yml
 /pelican/blog/pages/cycling/*.yml
 /pelican/blog/pages/mountaineering/*.yml
+/pelican/blog/output
