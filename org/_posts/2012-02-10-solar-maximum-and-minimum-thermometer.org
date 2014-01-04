@@ -24,7 +24,7 @@ temperature and not the maximum or minimum.
 
 #+BEGIN_HTML
 <div class="photofloatr">
-  <p><img src="/static/images/solar_thermometer.jpg" width="300"
+  <p><img src="/images/solar_thermometer.jpg" width="300"
      alt="Helicopter"></p>
   <p>Twin Rotor Helicopter</p>
 </div>

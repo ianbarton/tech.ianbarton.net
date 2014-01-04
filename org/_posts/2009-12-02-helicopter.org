@@ -25,7 +25,7 @@ shop. Anyway I couldn't resist and ended up buying one.
 
 #+BEGIN_HTML
 <div class="photofloatr">
-  <p><img src="/static/images/helicopter.jpg" width="200"
+  <p><img src="/images/helicopter.jpg" width="200"
      alt="Helicopter"></p>
   <p>Twin Rotor Helicopter</p>
 </div>

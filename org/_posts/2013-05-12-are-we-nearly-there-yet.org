@@ -19,8 +19,8 @@ speaker setup with one of the speakers missing.
 
 #+BEGIN_HTML
 <div class="photofloatr">
-<a class="fancybox-thumb" rel="fancybox-thumb"  title="Raspberry Pi DLNA Server." href="/static/images/mediapi/mediapi.jpg"><img
- width="200" alt="Raspberry Pi DLNA Server." title="Raspberry Pi DLNA Server." src="/static/images/mediapi/thumb.mediapi.jpg" /></a>
+<a class="fancybox-thumb" rel="fancybox-thumb"  title="Raspberry Pi DLNA Server." href="/images/mediapi/mediapi.jpg"><img
+ width="200" alt="Raspberry Pi DLNA Server." title="Raspberry Pi DLNA Server." src="/images/mediapi/thumb.mediapi.jpg" /></a>
 
 </div>
 #+END_HTML
