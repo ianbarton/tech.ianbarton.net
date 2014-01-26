@@ -1,0 +1,127 @@
+#+STARTUP: showall indent
+#+STARTUP: hidestars
+#+OPTIONS: H:2 num:nil tags:nil toc:nil timestamps:nil
+#+BEGIN_HTML
+---
+title: Samsung Chromebook.
+layout: post
+date: 2014-01-24
+tags: [emacs, chromebook]
+category: blog
+---
+#+END_HTML
+
+
+#+BEGIN_HTML
+<!-- PELICAN_BEGIN_SUMMARY -->
+#+END_HTML
+
+I have been using a Samsung Netbook for several years. It has served
+me well, but now several of the keys are starting to stick. Also, the
+keyboard has always seemed a little cramped. Just before Christmas I
+decided I would try out a Chromebook. I wanted a light computer with
+decent screen and a keyboard large enough to type comfortably on. I
+wasn't convinced that Chrome OS would have everything I needed, but I
+could install ArchLinux on an SD card and dual boot.
+
+#+BEGIN_HTML
+<!-- PELICAN_END_SUMMARY -->
+#+END_HTML
+
+The netbook had a 160 GByte hard disk. However, everything I need or
+day to day use is in plain text and will comfortably fit on a 16GByte
+SD card. If I needed more storage I could always take my portable usb
+hard drive. My only other concern was internet connectivity away from
+WiFI. However, by installing ArchLinux I could tether the Chromebook
+with my phone. The Chromebook is much lighter than my old Samsung
+netbook, which makes it much more likely that I'll take it with me.
+
+Getting up and running with Chrome was just about the most painless
+computer setup I have ever done. I turned on the Chromebook entered my
+Google login details and I was away, no further configuration
+needed. All my bookmarks and account info synchronized with the
+Chromebook.
+
+[[https://wiki.archlinux.org/index.php/Samsung_Chromebook_(ARM)][Installing]] Arch was more complicated, but nothing the average geek
+couldn't handle. I chose to install Arch on a 16GByte SD card. The
+trickiest part was installing U-Boot. I chose to use Xfce as a desktop
+environment, as it's lightweight and easily customizable.
+
+The most important functions I required on the Chromebook were:
+
+- Emacs. I manage just about every aspect of my life using Emacs
+  [[http://org-mode.org][org-mode]]. It's also the application I use for writing everything
+  from business letters to complicated reports containing tables an
+  graphs. For a very good overview of how to use org-mode to manage
+  your like see [[http://doc.norang.ca/org-mode.html][Bernt Hansen's]] excellent site.
+- A terminal. At the moment I am using terminator running full screen.
+- A web browser. Obviously this being a Chromebook I use Chromium.
+- git - I keep all my Emacs org-mode files in git repositories. I
+  commit my changes regularly.
+
+Using git means I can easily recover accidental deletions and I can
+ see what changes I have made to various documents over time. It also
+ makes working on different computers easy. In the past I have used
+ Dropbox, but this had several problems for me. I often work on
+ several different computers, some of which may be disconnected from
+ the Internet for various lengths of time. Dropbox would often be
+ unable to automatically resolve conflicts and create files like
+ "blackys-conflicted-copy-of-my-file.org". While Dropbox never lost
+ nay data sorting out the various conflicts was time consuming.
+
+Now I have a git branch for each computer. I usually work on my
+laptop, on the "laptop" git branch. If I know I am going to be working
+on a different computer, or at regular intervals I commit the changes
+from my laptop and push them to my repository on my Linode server. If
+I am working on the Chromebook I pull the "laptop" branch from my
+Linode server and merge it with the "chromebook" branch. Sometimes I
+get merge conflicts where I have been working on the same file on both
+computers between commits. However, git is designed to handle this
+situation and fixing up things is normally very easy. Also I have the
+complete history of all my changes, so if I make a mess I can simple
+go back to square one and redo things until I get a smooth merge.
+
+* Limitations of Running Arch on a Chromebook.
+For me the only limitation is that 3D graphics acceleration isn't
+available when running Arch because of the closed source nature of the
+binary drivers. Even though Chrome OS is based on Linux at the moment
+third parties can't use the 3D graphics drivers. This isn't really a
+major problem, if I want to watch a video or something on Netflix I
+just reboot into Chrome OS. The boot process is so fast, there is
+almost no noticeable delay in switching OS.
+
+The Chromebook keyboard is a little different to a standard
+keyboard. There are no Function keys. In Chrome OS the top row of keys
+is dedicated to functions such as volume, screen brightness and
+various browser control keys. Luckily in Arch ten of the top row of
+keys are mapped to F keys. This is essential to me as I have mapped
+many Emacs functions to the F keys. So F3 will close the current
+buffer and F7, m brings up the [[https://github.com/magit/magit][magit]] version control interface.
+
+* Chrome Apps I Find Useful.
+There are many application available for Chrome OS. This is a list of
+those that I find useful:
+
+- Secure Shell. Does what it says on the tin. Very useful ssh terminal
+  that supports ssh key authentication. If required I can run Emacs on
+  my Linode server.
+- Hotot a fancy pants Twitter client.
+- Amazon cloud reader - read your ebooks.
+- Google Keep - a very simple, but useful, notes app.
+- Quick Note - a more fully featured notes application.
+- Netflix.
+
+If you are interested in more cloud based text editors see my review
+[[http://ianbarton.net:/posts/2014/Jan/26/chrome-cloud-based-text-editors/][here]] .
+
+
+
+* Chromebook Versus Nexus 7 Tablet.
+I have a Nexus 7 tablet, which duplicates many of the things I can do
+on the Chromebook. So what are the advantages of also having a
+Chromebook:
+
+- Bigger screen - I can see more text.
+- Much better keyboard. I have a blue tooth keyboard for the Nexus 7,
+  but it's very cramped and I wouldn't want to write for a long time
+  on it.
