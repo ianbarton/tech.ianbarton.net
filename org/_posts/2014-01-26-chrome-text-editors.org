@@ -48,8 +48,7 @@ computer. However, the instructions were so terse I didn't even bother
 trying.
 
 ** [[https://github.com/jgfc/Textdown][Textdown]]
-Can be installed from the Google [[https://chrome.google.com/webstore/detail/textdown/efalomlklhakojjbdfehfkgoicablooc][Web Store]]. I couldn't get this to
-work properly using my version of Chromium. When I started it I was
+Can be installed from the Google [[https://chrome.google.com/webstore/detail/textdown/efalomlklhakojjbdfehfkgoicablooc][Web Store]].  When I started it I was
 prompted for a document name and a new document containing the "What's
 New" text was created. The app is completely driven using keyboard
 shortcuts I could access the options using Ctrl-< and the shortcuts
