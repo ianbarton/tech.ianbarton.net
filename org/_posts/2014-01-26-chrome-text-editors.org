@@ -1,0 +1,109 @@
+#+STARTUP: showall indent
+#+STARTUP: hidestars
+#+OPTIONS: H:2 num:nil tags:nil toc:nil timestamps:nil
+#+BEGIN_HTML
+---
+title: Chrome Cloud Based Text Editors.
+layout: post
+date: 2014-01-26
+tags: [blog]
+category: blog
+---
+#+END_HTML
+
+
+#+BEGIN_HTML
+<!-- PELICAN_BEGIN_SUMMARY -->
+#+END_HTML
+My preferred text editor is Emacs. However, sometimes I maybe in a
+situation where Emacs isn't available. For example if I
+am using Chrome OS on my Samsung Chromebook.
+
+I decided to look and see what cloud based editors were
+available. There are many text editor apps on the Chrome Store, but I
+wanted something that supported [[http://daringfireball.net/projects/markdown/][Markdown]], which reduced the field considerably.
+
+#+BEGIN_HTML
+<!-- PELICAN_END_SUMMARY -->
+#+END_HTML
+Markdown is great for writing structured text that can easily be
+converted into html or other formats. Another requirement was the
+ability to edit existing documents either on my own computer, or on a
+cloud service such as Google Drive or Dropbox.
+
+Below is a list of applications I have tried, with some brief notes
+about each one. I am sure I have missed out on some really useful
+apps, so please tell me about any that you know about.
+
+** [[http://dillinger.io/][Dillinger]]
+I must admit I really couldn't work out how to use this. That's
+probably just me and I am sure everyone else finds it obvious. It's an
+html5 based Markdown editor. However, when you look at the web site
+there is no obvious way to create a new document, or any "Getting
+Started" guide. You can link it to
+Github, Dropbox and Google Drive, but without being able to try it out
+first I didn't want to do this. I did have a look at the installation
+instructions on Github, thinking I might give it a try on my local
+computer. However, the instructions were so terse I didn't even bother
+trying.
+
+** [[https://github.com/jgfc/Textdown][Textdown]]
+Can be installed from the Google [[https://chrome.google.com/webstore/detail/textdown/efalomlklhakojjbdfehfkgoicablooc][Web Store]]. I couldn't get this to
+work properly using my version of Chromium. When I started it I was
+prompted for a document name and a new document containing the "What's
+New" text was created. The app is completely driven using keyboard
+shortcuts I could access the options using Ctrl-< and the shortcuts
+help screen using Ctrl-D. To get a preview it's Ctrl-P.
+
+This app was a bit too minimal for me. If you want to be able to open
+and save files from the local file system you need to install Textdown
+Utilities.  It's around 9 months since there have been any updates on
+the [[https://github.com/jgfc/Textdown][Github]] repo, so I assume the author has stopped developing the
+project.
+
+** [[https://draftin.com][Draft]]
+This is a free web service that is designed to enable people to share
+text with other collaborators.  You need to create an account (free)
+in order to use Draft. It's really more designed for collaborative
+work than just working on your own document.
+
+- Professional review of your documents (chargeable service)
+- Markdown formatting
+- Version control of your documents
+- Documents can be exported as html and text files.
+
+** [[http://writeboxapps.com/][WriteBox]]
+A great distraction free text editor that understands Markdown.
+
+- Can link to Google Drive and Dropbox.
+- Configurable screen colours, font size, font, line height and
+  width. Can toggle statistics and scroll bar.
+- Files can be opened from local drive, dropbox and Google Drive.
+- Preview mode.
+
+** [[https://stackedit.io][StackEdit]]
+- Based on the Markdown library used by the StackOverflow and
+  StackExchange sites.
+- Stores your document locally in the browser. Thus all your documents
+  are available offline.
+- Documents are not shared between different browsers and computers.
+- If you clear your browsers data you may delete all your local
+  documents. However, documents can be synchronized with a Google
+  Drive or Dropbox account.
+- You can publish documents on a wide range of services using
+  Markdown, html or a template giving you full control over the output.
+- Services supported for publishing are Blogger, Dropbox, Gist,
+  GitHub, Google Drive, SSH server, Tumblr, WordPress.
+- WYSIWYG control buttons.
+- The screen is split showing the text you are editing and a
+  preview. You can configure either a vertical or horizontal split.
+- The font is configurable (only monospace fonts are supported).
+- A number of themes to change the appearance are included and you can
+  define your own.
+- Fully open source.
+
+
+** The Final Verdict.
+With the exception of Dillinger, I liked all these apps. However, I
+felt that StackEdit was the one that was closest to my ideal cloud
+based text editing app.
