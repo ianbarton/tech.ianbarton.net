@@ -55,10 +55,12 @@
     {% endif %}
     <link rel="stylesheet" href="{{ SITEURL }}/theme/css/style.css" type="text/css"/>
     <link href="{{ SITEURL }}/theme/css/local.css" rel="stylesheet">
+    <link href="{{ SITEURL }}/theme/css/org.css" rel="stylesheet">
 
     <!-- JavaScript plugins (requires jQuery) -->
     <script src="http://code.jquery.com/jquery.js"></script>
 
+   <script src="{{ SITEURL }}/theme/js/show-hide.js" type="text/javascript"></script>
 
     {% if FEED_ALL_ATOM %}
         <link href="{{ SITEURL }}/{{ FEED_ALL_ATOM }}" type="application/atom+xml" rel="alternate"
