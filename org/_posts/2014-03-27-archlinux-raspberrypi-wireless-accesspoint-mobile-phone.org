@@ -1,0 +1,720 @@
+#+STARTUP: showall indent
+#+STARTUP: hidestars
+#+OPTIONS: H:2 num:nil tags:nil toc:nil timestamps:nil
+#+BEGIN_HTML
+---
+title: Creating a Wireless Access Point Using a RaspberryPi and a Mobile Phone.
+layout: post
+date: 2014-03-27
+tags: [emacs, archlinux, raspberrypi]
+category: blog
+---
+#+END_HTML
+
+
+#+BEGIN_HTML
+<!-- PELICAN_BEGIN_SUMMARY -->
+#+END_HTML
+
+My mobile phone plan allows me to tether the phone, so I can access
+the Internet in areas where there is no WiFi but have a good 3g
+connection. This post explains how to set up a RaspberryPi as a
+wireless access point, which is tethered to a mobile phone. Users can
+then connect to the WiFi and access the internet.
+
+#+BEGIN_HTML
+<!-- PELICAN_END_SUMMARY -->
+#+END_HTML
+If we are on holiday in a property that doesn't have WiFi it can be
+useful to set up a WiFi access point connected to a 3g mobile phone
+network, so family members can use the Internet. Note that not all
+mobile phone operators allow tethering, check first or you may end
+up either with a large bill, or being disconnected by your operator.
+
+I am using a RaspberryPi with [[http://archlinux.org][ArchLinux]] and an Android phone,
+connected to the Pi via a usb cable. I would advise using a powered
+hub as the phone and WiFi dongle will probably draw more current than
+the Pi's power supply can cope with.
+
+I have installed a dhcp server on the Pi. This manages connections to
+the Ethernet and the wireless network interfaces. The ethernet
+interface is on a different ip range (192.168.0.x) to the wireless
+interface (10.0.0.x). There are a couple of reasons for doing it this
+way:
+
+- You can easily access the Pi by plugging an ethernet cable into your
+  computer. If your computer's network card doesn't support auto
+  crossovers, will need to use a hub to connect to the ethernet
+  port.
+- You can use the Pi as a router to connect to the Internet as part of
+  a wired network. I find this useful at home as our ADSL connection
+  is unreliable. I can just plug the Pi into our wired network and use
+  it to access the internet.
+
+
+
+* Preflight Check.
+** Check that Your WiFi Card Can Act as an Access Point.
+Not all wireless cards can act as an access point. To check if yours
+can in a terminal:
+
+#+begin_src sh
+iwlist
+
+Supported interface modes:
+                 * IBSS
+                 * managed
+                 * AP
+                 * AP/VLAN
+                 * WDS
+                 * monitor
+                 * mesh point
+#+end_src
+
+Look in the "Supported interface modes". If AP isn't listed your card
+can't act as an access point.
+** Power Supply.
+You will almost certainly need to use a powered USB hub as the
+combined WiFi dongle and Android phone will take more current than the
+Pi can supply.
+
+
+
+* Installing Required Software.
+This assumes that you have installed the base Arch packages and have a
+working dhcp ethernet connection. You do not require a
+GUI to install/configure/run the router, you can do everything via
+ssh. However, you can install a GUI if you wish. For the purposes of
+this article my Pi has been given the host name "routerpi.bantercat.co.uk"
+
+#+begin_src sh
+pacman -S dhcp hostapd shorewall ppp modemmanager iw wpa_supplicant
+
+#+end_src
+
+* Using an Android Phone as a usb Modem.
+Some phones have the ability to tether via usb disabled by the network
+provider. I am assuming that your phone is able to tether. To check if
+you can tether plug your phone into a computer via the usb interface
+and go into Settings/Wireless and Networks/More/Tethering & portable
+hotspot. If your phone allows tethering you should be able to tick the
+USB tethering checkbox.
+
+Unfortunately there is currently no method of automatically enabling
+tethering when you plug in the usb cable, so you will always need to
+enable this manually.
+
+** Configuring a Network Interface for the Android Phone.
+You will need to create a netctl profile. I have called mine
+android-dhcp:
+
+#+begin_src sh
+Description='A basic static Android tethering'
+Interface=usb0
+Connection=ethernet
+IP=dhcp
+
+#+end_src
+
+You will need to enable the profile:
+
+#+begin_src sh
+sudo netctl enable android-dhcp
+#+end_src
+
+You can test that the interface is working:
+
+* Configuring the dhcp server.
+First we need to tell the dhcp server which interfaces to listen on.
+
+Edit /etc/conf.d/dhcp to add the wlan0 and eth0 interfaces.
+
+#+begin_src
+#
+# Arguments to be passed to the DHCP server daemon
+#
+
+# ipv4 runtime parameters
+DHCP4_ARGS="-q"
+
+# ipv6 runtime parameters
+DHCP6_ARGS="-q"
+
+INTERFACES="wlan0 eth0"
+#+end_src
+
+This is the main configuration file /etc/dhcpd.conf.
+
+#+begin_src
+ddns-update-style none;
+ignore client-updates;
+authoritative;
+option local-wpad code 252 = text;
+
+# This subnet is for the WiFi interface.
+
+subnet
+10.0.0.0 netmask 255.255.255.0 {
+# --- default gateway
+interface wlan0;
+option routers
+10.0.0.1;
+# --- Netmask
+option subnet-mask
+255.255.255.0;
+# --- Broadcast Address
+option broadcast-address
+10.0.0.255;
+# --- Domain name servers, tells the clients which DNS servers to use.
+option domain-name-servers
+10.0.0.1, 8.8.8.8, 8.8.4.4;
+option time-offset
+0;
+range 10.0.0.50 10.0.0.100;
+default-lease-time 1209600;
+max-lease-time 1814400;
+
+    host archpiwifi {
+         hardware ethernet 98:0c:82:db:5e:c8;
+         fixed-address 10.0.0.1;
+
+   }
+
+}
+
+
+# This subnet is for the ethernet interface.
+# If you want to use the Pi on a wired network
+# with en existing dhcp server, just comment
+# this section out.
+
+subnet
+192.168.0.0 netmask 255.255.255.0 {
+# --- default gateway
+interface eth0;
+option routers
+10.0.0.1;
+# --- Netmask
+option subnet-mask
+255.255.255.0;
+# --- Broadcast Address
+option broadcast-address
+192.168.0.255;
+# --- Domain name servers, tells the clients which DNS servers to use.
+option domain-name-servers
+10.0.0.1, 8.8.8.8, 8.8.4.4;
+option time-offset
+0;
+range 192.168.0.100 192.168.0.200;
+default-lease-time 1209600;
+max-lease-time 1814400;
+}
+
+#+end_src
+
+You can test that
+your file doesn't have any syntax errors by running:
+#+begin_src sh
+dchpd -t
+#+end_src
+
+I am using ipv4, so we need to enable the dhcpd4 service and start it:
+
+#+begin_src sh
+sudo systemctl enable dhcpd4.service
+sudo systemctl start dhcpd4.service
+#+end_src
+
+* Configuring the Wireless Interface and hostapd.
+I needed to setup a basic interface on wlan0 before hostapd starts. I
+did this using a systemd unit. I had quite a bit of trouble getting
+this to work properly and was greatly helped by [[http://www.raspberrypi.org/phpBB3/viewtopic.php?f%3D29&t%3D27005][this]] post in the
+RaspberryPi forums. The systemd unit creates an interface with the
+address 10.0.0.1 on wlan0.
+
+Create the file /lib/systemd/system/wifi-hostapd.service
+
+#+begin_src sh
+[Unit]
+Description=Add static ip for wireless
+Before=hostapd.service
+Wants=network.target
+Before=network.target
+BindsTo=sys-subsystem-net-devices-wlan0.device
+After=sys-subsystem-net-devices-wlan0.device
+
+[Service]
+Type=oneshot
+ExecStart=/usr/sbin/ip addr add 10.0.0.1/24 dev wlan0 brd + dev wlan0
+
+[Install]
+WantedBy=multi-user.target
+
+#+end_src
+
+Don't forget to enable the service:
+#+begin_src sh
+sudo systemctl wifi-hostapd.service
+#+end_src
+
+Now edit /etc/hostapd/hostapd.conf:
+
+#+begin_src sh
+ssid=yourssidname
+# Note must be between 8 and 63 characters long.
+# Don't quote the string.
+wpa_passphrase=A password with spaces
+interface=wlan0
+bridge=br0
+auth_algs=3
+channel=7
+driver=nl80211
+hw_mode=g
+logger_stdout=-1
+logger_stdout_level=2
+max_num_sta=5
+rsn_pairwise=CCMP
+wpa=2
+wpa_key_mgmt=WPA-PSK
+wpa_pairwise=TKIP CCMP
+
+#+end_src
+* Firewall and Routing.
+I have installed [[http://shorewall.org][shorewall]] which serves two purposes. It acts as a
+firewall and also routes traffic between the ethernet interface and
+the Internet.
+
+This isn't a shorewall tutorial and I am definitely not a firewall
+expert. The configuration files are just a basic set of rules to get
+you started. All traffic for networks outside the dhcp configured
+network for eth0, or wlan0 will be forwarded to the Android usb interface.
+
+The suggested configuration provides a very basic set of firewall
+rules that allows all traffic out of the Pi and restricts the traffic
+that can enter your network.
+
+NAT.
+
+** Shorewall Configuration.
+It's very easy to lock yourself out of the server while setting up
+Shorewall. Until you are confident that you have configured your rules
+correctly I suggest that you test your configuration using the try command:
+
+#+begin_src sh
+shorewall try /etc/shorewall 1m
+
+#+end_src
+
+This will start shorewall and enable all the rules for a period of one
+minute. When this time had elapsed shorewall will stop and restore the
+previous configuration.
+
+* Testing.
+Log in via the ethernet interface and try to ping the network address
+for the WiFi card:
+
+#+begin_src sh
+[ian@routerpi netctl]$ sudo ping 10.0.0.1
+[sudo] password for ian:
+PING 10.0.0.1 (10.0.0.1) 56(84) bytes of data.
+64 bytes from 10.0.0.1: icmp_seq=1 ttl=64 time=0.495 ms
+64 bytes from 10.0.0.1: icmp_seq=2 ttl=64 time=0.334 ms
+#+end_src
+
+Now try and connect via the wireless AP that you have created. If this
+succeeds you should be allocated a network address in the range
+10.0.0.50 to 10.0.0.100.
+* Shorewall.
+** Interfaces.
+#+begin_src sh :tangle ~/dropbox/configuration_files/archpi.bantercat.co.uk/shorewall/interfaces :exports none :noweb yes
+#
+# Shorewall version 4.0 - Sample Interfaces File for two-interface configuration.
+# Copyright (C) 2006 by the Shorewall Team
+#
+# This library is free software; you can redistribute it and/or
+# modify it under the terms of the GNU Lesser General Public
+# License as published by the Free Software Foundation; either
+# version 2.1 of the License, or (at your option) any later version.
+#
+# See the file README.txt for further details.
+#------------------------------------------------------------------------------
+# For information about entries in this file, type "man shorewall-interfaces"
+###############################################################################
+#ZONE	INTERFACE	BROADCAST	OPTIONS
+net     ppp0            detect          tcpflags,nosmurfs,routefilter,logmartians
+loc     wlan0            detect         tcpflags,nosmurfs,routefilter,logmartians
+loc     eth0            detect          tcpflags,nosmurfs,routefilter,logmartians
+#+end_src
+** masq
+#+begin_src sh :tangle ~/dropbox/configuration_files/archpi.bantercat.co.uk/shorewall/masq :exports none :noweb yes
+#
+# Shorewall version 4.0 - Sample Masq file for two-interface configuration.
+# Copyright (C) 2006 by the Shorewall Team
+#
+# This library is free software; you can redistribute it and/or
+# modify it under the terms of the GNU Lesser General Public
+# License as published by the Free Software Foundation; either
+# version 2.1 of the License, or (at your option) any later version.
+#
+# See the file README.txt for further details.
+#------------------------------------------------------------------------------
+# For information about entries in this file, type "man shorewall-masq"
+###############################################################################
+#INTERFACE		SOURCE		ADDRESS		PROTO	PORT(S)	IPSEC	MARK
+#eth0			10.0.0.0/8,\
+#			169.254.0.0/16,\
+#			172.16.0.0/12,\
+#			192.168.0.0/16
+
+#eth0:0			192.168.0.0/16   217.146.125.41
+#eth0			192.168.0.0/24
+
+#ppp0			10.0.0.0/8
+#usb0                   192.168.1.0/24
+usb0                    10.0.0.0/24
+
+#+end_src
+
+
+** Policy.
+#+begin_src sh :tangle ~/dropbox/configuration_files/archpi.bantercat.co.uk/shorewall/policy :exports none :noweb yes
+
+#
+# Shorewall version 4 - Policy File
+#
+# For information about entries in this file, type "man shorewall-policy"
+#
+# The manpage is also online at
+# http://www.archpi.net/manpages/shorewall-policy.html
+#
+###############################################################################
+#SOURCE	DEST	POLICY		LOG	LIMIT:		CONNLIMIT:
+#				LEVEL	BURST		MASK
+$FW     net     ACCEPT
+loc	$FW	ACCEPT
+$FW	loc	ACCEPT
+# road           all              ACCEPT
+
+loc             net             ACCEPT
+net             all             DROP            info
+
+#rem             loc             ACCEPT
+#loc             rem             ACCEPT
+
+# THE FOLLOWING POLICY MUST BE LAST
+all             all             REJECT          info
+
+#+end_src
+
+** Rules.
+
+#+begin_src sh :tangle ~/dropbox/configuration_files/archpi.bantercat.co.uk/shorewall/rules :exports none :noweb yes
+#
+# Shorewall version 4.0 - Sample Rules File for two-interface configuration.
+# Copyright (C) 2006,2007 by the Shorewall Team
+#
+# This library is free software; you can redistribute it and/or
+# modify it under the terms of the GNU Lesser General Public
+# License as published by the Free Software Foundation; either
+# version 2.1 of the License, or (at your option) any later version.
+#
+# See the file README.txt for further details.
+#------------------------------------------------------------------------------
+# For information about entries in this file, type "man shorewall-rules"
+#############################################################################################################
+#ACTION		SOURCE		DEST		PROTO	DEST	SOURCE		ORIGINAL	RATE		USER/	MARK
+#							PORT	PORT(S)		DEST		LIMIT		GROUP
+#
+#	Accept DNS connections from the firewall to the network
+#
+DNS(ACCEPT)	$FW		net
+#
+#	Accept SSH connections from the local network for administration
+#
+SSH(ACCEPT)	loc		$FW
+#
+#	Allow Ping from the local network
+#
+Ping(ACCEPT)	loc		$FW
+
+#
+# Drop Ping from the "bad" net zone.. and prevent your log from being flooded..
+#
+
+#Ping(DROP)	net		$FW
+
+ACCEPT		$FW		loc		icmp
+ACCEPT		$FW		net		icmp
+#
+
+
+SSH(DNAT)	net		loc:192.168.0.50 TCP 22
+
+
+
+ACCEPT    $FW         net      tcp      www
+
+
+
+#+end_src
+
+** Routestopped.
+#+begin_src sh :tangle ~/dropbox/configuration_files/archpi.bantercat.co.uk/shorewall/routestopped :exports none :noweb yes
+#
+# Shorewall version 4.0 - Sample Routestopped File for two-interface configuration.
+# Copyright (C) 2006 by the Shorewall Team
+#
+# This library is free software; you can redistribute it and/or
+# modify it under the terms of the GNU Lesser General Public
+# License as published by the Free Software Foundation; either
+# version 2.1 of the License, or (at your option) any later version.
+#
+# See the file README.txt for further details.
+#------------------------------------------------------------------------------
+# For information about entries in this file, type "man shorewall-routestopped"
+##############################################################################
+#INTERFACE	HOST(S)                  OPTIONS
+ACCEPT   wlan0                        -
+ACCEPT   -                            wlan0
+
+#+end_src
+
+** shorewall.conf.
+#+begin_src sh :tangle ~/dropbox/configuration_files/archpi.bantercat.co.uk/shorewall/shorewall.conf :exports none :noweb yes
+###############################################################################
+#
+# Shorewall version 4.0 - Sample shorewall.conf for two-interface
+#                         configuration.
+# Copyright (C) 2006,2007 by the Shorewall Team
+#
+# This library is free software; you can redistribute it and/or
+# modify it under the terms of the GNU Lesser General Public
+# License as published by the Free Software Foundation; either
+# version 2.1 of the License, or (at your option) any later version.
+#
+# See the file README.txt for further details.
+#
+# For information about the settings in this file, type "man shorewall.conf"
+#
+# The manpage is also online at
+# http://shorewall.net/manpages/shorewall.conf.html
+#
+###############################################################################
+#		       S T A R T U P   E N A B L E D
+###############################################################################
+
+STARTUP_ENABLED=Yes
+
+###############################################################################
+#		              V E R B O S I T Y
+###############################################################################
+
+VERBOSITY=1
+
+###############################################################################
+#                              C O M P I L E R
+#      (setting this to 'perl' requires installation of Shorewall-perl)
+###############################################################################
+
+SHOREWALL_COMPILER=
+
+###############################################################################
+#			       L O G G I N G
+###############################################################################
+
+LOGFILE=/var/log/messages
+
+STARTUP_LOG=/var/log/shorewall-init.log
+
+LOG_VERBOSITY=2
+
+LOGFORMAT="Shorewall:%s:%s:"
+
+LOGTAGONLY=No
+
+LOGRATE=
+
+LOGBURST=
+
+LOGALLNEW=
+
+BLACKLIST_LOGLEVEL=
+
+MACLIST_LOG_LEVEL=info
+
+TCP_FLAGS_LOG_LEVEL=info
+
+SMURF_LOG_LEVEL=info
+
+LOG_MARTIANS=Yes
+
+###############################################################################
+#	L O C A T I O N	  O F	F I L E S   A N D   D I R E C T O R I E S
+###############################################################################
+
+IPTABLES=
+
+IP=
+
+TC=
+
+IPSET=
+
+PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/bin:/usr/local/sbin
+
+SHOREWALL_SHELL=/bin/sh
+
+SUBSYSLOCK=
+
+MODULESDIR=
+
+CONFIG_PATH=/etc/shorewall:/usr/share/shorewall
+
+RESTOREFILE=
+
+IPSECFILE=zones
+
+LOCKFILE=
+
+###############################################################################
+#		D E F A U L T   A C T I O N S / M A C R O S
+###############################################################################
+
+DROP_DEFAULT="Drop"
+REJECT_DEFAULT="Reject"
+ACCEPT_DEFAULT="none"
+QUEUE_DEFAULT="none"
+NFQUEUE_DEFAULT="none"
+
+###############################################################################
+#                        R S H / R C P  C O M M A N D S
+###############################################################################
+
+RSH_COMMAND='ssh ${root}@${system} ${command}'
+RCP_COMMAND='scp ${files} ${root}@${system}:${destination}'
+
+###############################################################################
+#			F I R E W A L L	  O P T I O N S
+###############################################################################
+
+IP_FORWARDING=On
+
+ADD_IP_ALIASES=Yes
+
+ADD_SNAT_ALIASES=Yes
+
+RETAIN_ALIASES=No
+
+TC_ENABLED=Internal
+
+TC_EXPERT=No
+
+CLEAR_TC=Yes
+
+MARK_IN_FORWARD_CHAIN=No
+
+CLAMPMSS=Yes
+
+ROUTE_FILTER=No
+
+DETECT_DNAT_IPADDRS=No
+
+MUTEX_TIMEOUT=60
+
+ADMINISABSENTMINDED=Yes
+
+BLACKLISTNEWONLY=Yes
+
+DELAYBLACKLISTLOAD=No
+
+MODULE_SUFFIX=ko
+
+DISABLE_IPV6=No
+
+BRIDGING=No
+
+DYNAMIC_ZONES=No
+
+PKTTYPE=Yes
+
+NULL_ROUTE_RFC1918=No
+
+MACLIST_TABLE=filter
+
+MACLIST_TTL=
+
+SAVE_IPSETS=No
+
+MAPOLDACTIONS=No
+
+FASTACCEPT=No
+
+IMPLICIT_CONTINUE=No
+
+HIGH_ROUTE_MARKS=No
+
+USE_ACTIONS=Yes
+
+OPTIMIZE=1
+
+EXPORTPARAMS=No
+
+EXPAND_POLICIES=Yes
+
+KEEP_RT_TABLES=No
+
+DELETE_THEN_ADD=Yes
+
+MULTICAST=No
+
+DONT_LOAD=
+
+AUTO_COMMENT=Yes
+
+MANGLE_ENABLED=Yes
+
+USE_DEFAULT_RT=No
+
+RESTORE_DEFAULT_ROUTE=Yes
+
+AUTOMAKE=No
+
+WIDE_TC_MARKS=Yes
+
+TRACK_PROVIDERS=Yes
+
+ZONE2ZONE=2
+
+###############################################################################
+#			P A C K E T   D I S P O S I T I O N
+###############################################################################
+
+BLACKLIST_DISPOSITION=DROP
+
+MACLIST_DISPOSITION=REJECT
+
+TCP_FLAGS_DISPOSITION=DROP
+
+#LAST LINE -- DO NOT REMOVE
+
+#+end_src
+
+** zones.
+#+begin_src sh :tangle ~/dropbox/configuration_files/archpi.bantercat.co.uk/shorewall/zones :exports none :noweb yes
+#
+# Shorewall version 4 - Zones File
+#
+# For information about this file, type "man shorewall-zones"
+#
+# The manpage is also online at
+# http://www.shorewall.net/manpages/shorewall-zones.html
+#
+###############################################################################
+#ZONE	TYPE		OPTIONS		IN			OUT
+#					OPTIONS			OPTIONS
+fw	firewall
+net	ipv4
+loc	ipv4
+# road ipv4
+
+#+end_src
