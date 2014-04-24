@@ -1,0 +1,103 @@
+#+STARTUP: showall indent
+#+STARTUP: hidestars
+#+OPTIONS: H:2 num:nil tags:nil toc:nil timestamps:nil
+#+BEGIN_HTML
+---
+title: Replacing the Batteries in a Casio Protrek PRG-40-3VUR Watch.
+summary: A guide on how to replace the four batteries in this watch. You will need four SR927W button cells.
+date: 2014-04-24
+tags: [gadgets]
+category: blog
+---
+#+END_HTML
+
+I have had a Casio Protrek PRG-40-3VUR for about three and a half
+years now. It's a great watch. Recently I noticed that the compass was
+no longer working and was displaying an error message. A bit of
+Googling showed that the batteries needed replacing, hardly surprising
+after three years use. Replacing the batteries isn't too difficult but
+is quite fiddly, so take your time.
+
+#+BEGIN_HTML
+<div class="photofloatr">
+<a class="fancybox-thumb" rel="fancybox-thumb"  title="Metal back cover." href="/images/casio_protrek/watch_metal_cover.jpg"><img
+ width="200" alt="Metal back cover." title="Metal back cover." src="/images/casio_protrek/watch_metal_cover.jpg" /></a>
+
+</div>
+#+END_HTML
+
+
+There are a number of articles on the Internet that discuss how to
+replace the batteries in Casio watches, but none specifically for this
+one.  I didn't even know exactly what batteries were required, so I
+decided to see if I could take the watch apart to find out.
+
+The only tools you need are a jewellers screwdriver for the Philips
+screws that hold the case together, a small flat bladed screwdriver,
+or a pair of tweezers to remove the batteries.
+
+#+BEGIN_HTML
+<div class="photofloatl">
+<a class="fancybox-thumb" rel="fancybox-thumb"  title="Plastic back cover." href="/images/casio_protrek/watch_white_cover.jpg"><img
+ width="200" alt="Plastic back cover." title="Plastic back cover." src="/images/casio_protrek/watch_white_cover.jpg" /></a>
+
+</div>
+#+END_HTML
+
+There are eight screws that need to be removed. Four on the back of
+the watch and two on each side. These are very small, so it's best to
+perform this operation on a piece of white paper, so you can see them
+if you drop them. The screws on either side of the watch are
+different, so make sure you note which side they came from and put them
+back in the same side.
+
+Once you have removed the screws lay the watch flat on its face and
+gently remove the grey plastic back cover. Underneath this is a rubber
+gasket that forms a watertight seal. Be careful not to damage or lose
+this. You can now carefully lift off the metal back and the white
+plastic cover underneath it. You should now be able to see the four
+SR927W batteries that power the watch.
+#+BEGIN_HTML
+<div class="photofloatr">
+<a class="fancybox-thumb" rel="fancybox-thumb"  title="The various components in the watch back." href="/images/casio_protrek/back_components.jpg"><img
+ width="200" alt="The various components in the watch back." title="The various components in the watch back." src="/images/casio_protrek/back_components.jpg" /></a>
+
+</div>
+#+END_HTML
+
+These can be quite tricky to remove. You will need a small flat bladed
+screwdriver, or the point on a pair of tweezers. The batteries are
+covered by a small clasp which must be opened, so you can remove the
+batteries. Each clasp has a small hole near the centre. If you insert
+the blade of your screwdriver, or the end of the tweezers into this
+and push it gently towards the centre of the watch the clasp will
+release. The clasp will only lift a small way up, don't try and force
+it too far. Now gently prize the batteries out.
+
+Put in the new batteries. Don't do this using tweezers, or you will
+probably short them out. Make sure they are properly seated and gently
+re-seat the clasps.
+#+BEGIN_HTML
+<div class="photofloatl">
+<a class="fancybox-thumb" rel="fancybox-thumb"  title="Releasing the battery clasp and position of the reset pin." href="/images/casio_protrek/batteries_reset.jpg"><img
+ width="200" alt="Releasing the battery clasp and position of the reset pin." title="Releasing the battery clasp and position of the reset pin." src="/images/casio_protrek/batteries_reset.jpg" /></a>
+
+</div>
+#+END_HTML
+
+You will now need to reset the watch. There is a small sticker with red
+print stating: "After battery replacement, contact AC with terminal
+(+) using tweezers". It's not at all obvious where the AC terminal is
+situated. If you look carefully there is an arrow engraved on the
+metal plate inside the watch pointing at it.  It's a small gold plated
+terminal inside a hole pointed at by the arrow. There are four
+contacts in the hole, make sure you pick the one the arrow is pointing
+at. I did this using a short length of wire. Carefully holding the
+inside of the watch to prevent anything falling out look at the
+face. You should see that the watch is working.
+
+Now replace the white plastic cover and metal back. Carefully insert
+the gasket in the groove in the metal back and replace the grey
+plastic back without disturbing the gasket. Now replace the screws,
+being careful not to over-tighten them. Finally reset the time and date
+to the correct values.
