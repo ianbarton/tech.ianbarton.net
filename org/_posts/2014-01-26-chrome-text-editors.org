@@ -1,15 +1,11 @@
-#+STARTUP: showall indent
-#+STARTUP: hidestars
-#+OPTIONS: H:2 num:nil tags:nil toc:nil timestamps:nil
-#+BEGIN_HTML
----
-title: Chrome Cloud Based Text Editors.
-layout: post
-date: 2014-01-26
-tags: [blog]
-category: blog
----
-#+END_HTML
+#+CATEGORY: Blog
+#+AUTHOR: Ian Barton
+#+PROPERTY: LANGUAGE en
+#+DATE:2014-01-26
+#+PROPERTY: MODIFIED [2016-03-29 Tue]
+#+TITLE: Chrome Cloud Based Text Editors.
+#+SETUPFILE: "../setup.org"
+
 
 
 #+BEGIN_HTML

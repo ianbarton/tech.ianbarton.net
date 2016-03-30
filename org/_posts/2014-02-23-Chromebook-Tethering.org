@@ -1,14 +1,13 @@
-#+STARTUP: showall indent
-#+STARTUP: hidestars
-#+OPTIONS: H:2 num:nil tags:nil toc:nil timestamps:nil
-#+BEGIN_HTML
----
-title: Chromebook Tethering.
-date: 2014-02-23
-tags: [chromebook]
-category: blog
----
-#+END_HTML
+#+CATEGORY: Blog
+#+AUTHOR: Ian Barton
+#+PROPERTY: LANGUAGE en
+#+DATE: 2014-02-23
+#+PROPERTY: MODIFIED [2016-03-29 Tue]
+#+TITLE: Chromebook Tethering.
+#+PROPERTY: TAGS chromebook
+#+PROPERTY: SUMMARY A cheap Solar powered maximum and minimum thermometer.
+#+SETUPFILE: "../setup.org"
+
 
 My Samsung XE303C12 Chromebook doesn't have 3g. I was wondering how I could
 tether my phone and after a bit of research found that if I simply

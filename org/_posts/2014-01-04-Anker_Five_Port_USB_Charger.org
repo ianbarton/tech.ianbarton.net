@@ -1,15 +1,12 @@
-#+STARTUP: showall indent
-#+STARTUP: hidestars
-#+OPTIONS: H:2 num:nil tags:nil toc:nil timestamps:nil
-#+BEGIN_HTML
----
-title: USB Charger for iPads, Nexus Tablets and Smartphones.
-summary: A five port usb recharger that works with any device.
-date: 2014-01-04
-tags: [gadgets]
-category: blog
----
-#+END_HTML
+#+CATEGORY: Blog
+#+AUTHOR: Ian Barton
+#+PROPERTY: LANGUAGE en
+#+DATE:2014-01-04
+#+PROPERTY: MODIFIED [2016-03-29 Tue]
+#+TITLE: USB Charger for iPads, Nexus Tablets and Smartphones.
+#+PROPERTY: TAGS gadgets
+#+PROPERTY: SUMMARY A five port usb recharger that works with any device.
+#+SETUPFILE: "../setup.org"
 
 #+BEGIN_HTML
 <div class="photofloatr">

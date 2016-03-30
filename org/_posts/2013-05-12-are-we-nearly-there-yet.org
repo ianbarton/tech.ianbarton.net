@@ -1,15 +1,12 @@
-#+STARTUP: showall indent
-#+STARTUP: hidestars
-#+OPTIONS: H:2 num:nil tags:nil toc:nil timestamps:nil
-#+BEGIN_HTML
----
-title: A Dlna Server On a Raspberry Pi.
-summary: "Using a raspberry pi to create a WiFi based dlna multimedia server, which can be used in a car, or as a standalone box. "
-date: 2013-05-12
-tags: [raspberrypi]
-category: blog
----
-#+END_HTML
+#+CATEGORY: Blog
+#+AUTHOR: Ian Barton
+#+PROPERTY: LANGUAGE en
+#+DATE:2013-05-12
+#+PROPERTY: MODIFIED [2016-03-29 Tue]
+#+TITLE: A Dlna Server On a Raspberry Pi.
+#+PROPERTY: TAGS raspberrypi
+#+PROPERTY: SUMMARY Using a raspberry pi to create a WiFi based dlna multimedia server, which can be used in a car, or as a standalone box.
+#+SETUPFILE: "../setup.org"
 
 If you have children, you will recognise the "Are we nearly there"
 syndrome. This happens on long car journeys, usually starting only a

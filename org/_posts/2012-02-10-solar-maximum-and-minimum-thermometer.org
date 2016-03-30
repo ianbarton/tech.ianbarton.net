@@ -1,18 +1,12 @@
-#+STARTUP: showall indent
-#+STARTUP: hidestars
-#+OPTIONS: H:3 num:nil tags:nil toc:nil timestamps:nil
-
-#+BEGIN_HTML
----
-date: 2012-02-10
-title: Solar Maximum and Minimum Thermometer
-layout: post
-summary: "A cheap Solar powered maximum and minimum thermometer."
-tags: [gear]
-category: blog
-comments: true
----
-#+END_HTML
+#+CATEGORY: Blog
+#+AUTHOR: Ian Barton
+#+PROPERTY: LANGUAGE en
+#+DATE:2012-02-10
+#+PROPERTY: MODIFIED [2016-03-29 Tue]
+#+TITLE: Solar Maximum and Minimum Thermometer
+#+PROPERTY: TAGS gadgets
+#+PROPERTY: SUMMARY A cheap Solar powered maximum and minimum thermometer.
+#+SETUPFILE: "../setup.org"
 
 
 I have often wondered how cold it got inside and outside my tent

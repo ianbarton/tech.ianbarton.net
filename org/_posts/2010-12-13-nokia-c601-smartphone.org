@@ -1,15 +1,15 @@
-#+STARTUP: showall indent
-#+STARTUP: hidestars
-#+OPTIONS: H:3 num:nil tags:nil toc:nil timestamps:nil
+#+CATEGORY: Blog
+#+AUTHOR: Ian Barton
+#+PROPERTY: LANGUAGE en
+#+DATE:2010-12-13
+#+PROPERTY: MODIFIED [2016-03-29 Tue]
+#+PROPERTY: TAGS gadgets
+#+TITLE: Nokia C6-01 Smartphone.
+#+SETUPFILE: "../setup.org"
+
 
 #+BEGIN_HTML
 ---
-date: 2010-12-13
-title: Nokia C6-01 Smartphone.
-layout: post
-excerpt:
-category: blog
-comments: true
 excerpt: "My new smartphone, a replacement for my Nokia 5800."
 ---
 #+END_HTML

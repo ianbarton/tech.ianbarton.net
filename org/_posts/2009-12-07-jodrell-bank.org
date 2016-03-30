@@ -1,15 +1,15 @@
-#+STARTUP: showall indent
-#+STARTUP: hidestars
-#+INFOJS_OPT: view:info toc:nil ltoc:nil
-#+OPTIONS: H:2 num:nil tags:nil toc:nil timestamps:nil
+#+CATEGORY: Blog
+#+AUTHOR: Ian Barton
+#+PROPERTY: LANGUAGE en
 #+TITLE: Jodrell Bank.
+#+PROPERTY: LANGUAGE en
+#+DATE:2009-12-07
+#+PROPERTY: MODIFIED [2016-03-29 Tue]
+#+SETUPFILE: "../setup.org"
+
 
 #+BEGIN_HTML
 ---
-date: 2009-12-07
-layout: post
-category: blog
-title: Jodrell Bank.
 excerpt: "We don't live very far from the radio telescope at [[http://www.jb.man.ac.uk/][Jodrell Bank]]. The
 last time I visited was more than 10 years ago. However, yesterday our
 two girls were taking part in a gym competition very close to the

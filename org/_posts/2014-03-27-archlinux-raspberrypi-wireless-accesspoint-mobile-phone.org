@@ -1,16 +1,11 @@
-#+STARTUP: showall indent
-#+STARTUP: hidestars
-#+OPTIONS: H:2 num:nil tags:nil toc:nil timestamps:nil
-#+BEGIN_HTML
----
-title: Creating a Wireless Access Point Using a RaspberryPi and a Mobile Phone.
-layout: post
-date: 2014-03-27
-tags: [emacs, archlinux, raspberrypi]
-category: blog
----
-#+END_HTML
-
+#+CATEGORY: Blog
+#+AUTHOR: Ian Barton
+#+PROPERTY: LANGUAGE en
+#+DATE: 2014-03-27
+#+PROPERTY: MODIFIED [2016-03-29 Tue]
+#+TITLE: Creating a Wireless Access Point Using a RaspberryPi and a Mobile Phone.
+#+PROPERTY: TAGS raspberrypi linux
+#+SETUPFILE: "../setup.org"
 
 #+BEGIN_HTML
 <!-- PELICAN_BEGIN_SUMMARY -->

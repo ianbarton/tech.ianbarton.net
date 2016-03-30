@@ -1,14 +1,12 @@
-#+STARTUP: showall indent
-#+STARTUP: hidestars
-#+OPTIONS: H:3 num:nil tags:nil toc:nil timestamps:nil
-#+BEGIN_HTML
----
-title: Blogging with Emacs org-mode and Pelican.
-date: 2013-04-06
-tags: [emacs, org-mode]
-category: blog
----
-#+END_HTML
+#+CATEGORY: Blog
+#+AUTHOR: Ian Barton
+#+PROPERTY: LANGUAGE en
+#+DATE:2013-04-06
+#+PROPERTY: MODIFIED [2016-03-29 Tue]
+#+TITLE: Blogging with Emacs org-mode and Pelican.
+#+PROPERTY: TAGS emacs, org-mode
+#+PROPERTY: SUMMARY A cheap Solar powered maximum and minimum thermometer.
+#+SETUPFILE: "../setup.org"
 
 #+BEGIN_HTML
 <!-- PELICAN_BEGIN_SUMMARY -->

@@ -1,15 +1,12 @@
-#+STARTUP: showall indent
-#+STARTUP: hidestars
-#+OPTIONS: H:2 num:nil tags:nil toc:nil timestamps:t
+#+CATEGORY: Blog
+#+AUTHOR: Ian Barton
+#+PROPERTY: LANGUAGE en
+#+DATE:2009-12-02
+#+PROPERTY: MODIFIED [2016-03-29 Tue]
+#+PROPERTY: TAGS gadgets
+#+TITLE: Model Helicopter
 #+BEGIN_HTML
-
 ---
-date: 2009-12-02
-layout: post
-tags: [ gadgets]
-category: blog
-title: Model Helicopter
-
 excerpt: "Having three young children is always a useful excuse for buying new
 toys. Last week I was looking around our local model shop and the
 owner was flying a small twin rotor plastic helicopter around the

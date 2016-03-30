@@ -1,14 +1,13 @@
-#+STARTUP: showall indent
-#+STARTUP: hidestars
-#+OPTIONS: H:2 num:nil tags:nil toc:nil timestamps:t
+#+CATEGORY: Blog
+#+AUTHOR: Ian Barton
+#+SETUPFILE: "../setup.org"
+#+PROPERTY: LANGUAGE en
+#+PROPERTY: MODIFIED [2016-03-29 Tue]
+#+PROPERTY: TAGS gadgets
+#+DATE: 2009-11-26
 
 #+BEGIN_HTML
 ---
-date: 2009-11-26
-layout: post
-title: Proporta Gadget Bag.
-tags: [gadgets]
-category: blog
 summary: A review of the Proporta Gadget Bag.
 ---
 #+END_HTML

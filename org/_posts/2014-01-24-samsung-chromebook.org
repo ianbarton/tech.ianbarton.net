@@ -1,15 +1,12 @@
-#+STARTUP: showall indent
-#+STARTUP: hidestars
-#+OPTIONS: H:2 num:nil tags:nil toc:nil timestamps:nil
-#+BEGIN_HTML
----
-title: Samsung Chromebook.
-layout: post
-date: 2014-01-24
-tags: [emacs, chromebook]
-category: blog
----
-#+END_HTML
+#+CATEGORY: Blog
+#+AUTHOR: Ian Barton
+#+PROPERTY: LANGUAGE en
+#+DATE:2014-01-24
+#+PROPERTY: MODIFIED [2016-03-29 Tue]
+#+TITLE: Samsung Chromebook.
+#+PROPERTY: TAGS emacs, chromebook
+#+PROPERTY: SUMMARY A cheap Solar powered maximum and minimum thermometer.
+#+SETUPFILE: "../setup.org"
 
 
 #+BEGIN_HTML
