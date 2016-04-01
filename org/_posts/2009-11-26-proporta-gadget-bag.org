@@ -2,15 +2,10 @@
 #+AUTHOR: Ian Barton
 #+SETUPFILE: "../setup.org"
 #+PROPERTY: LANGUAGE en
-#+PROPERTY: MODIFIED [2016-03-29 Tue]
 #+PROPERTY: TAGS gadgets
+#+PROPERTY: SUMMARY A review of the Proporta Gadget Bag.
 #+DATE: 2009-11-26
-
-#+BEGIN_HTML
----
-summary: A review of the Proporta Gadget Bag.
----
-#+END_HTML
+#+TITLE: Proporta Gadget Bag.
 
 The bag that comes with the Asus eee is fine for carrying the
 computer, but doesn't have any space for the charger or other bits and
