@@ -4,8 +4,8 @@ PELICANOPTS=
 
 BASEDIR=$(CURDIR)
 INPUTDIR=$(BASEDIR)/content
-#OUTPUTDIR=$(BASEDIR)/output
-OUTPUTDIR=/srv/http
+OUTPUTDIR=$(BASEDIR)/output
+#OUTPUTDIR=/srv/http
 CONFFILE=$(BASEDIR)/pelicanconf.py
 PUBLISHCONF=$(BASEDIR)/publishconf.py
 
@@ -28,7 +28,7 @@ help:
 	@echo '   make clean                       remove the generated files         '
 	@echo '   make regenerate                  regenerate files upon modification '
 	@echo '   make publish                     generate using production settings '
-	@echo '   make serve                       serve site at http://localhost:8000'
+	@echo '   make serve                       serve site at http://localhost:8100'
 	@echo '   make devserver                   start/restart develop_server.sh    '
 	@echo '   ssh_upload                       upload the web site via SSH        '
 	@echo '   rsync_upload                     upload the web site via rsync+ssh  '
@@ -51,7 +51,7 @@ regenerate: clean
 	$(PELICAN) -r $(INPUTDIR) -o $(OUTPUTDIR) -s $(CONFFILE) $(PELICANOPTS)
 
 serve:
-	cd $(OUTPUTDIR) && python -m SimpleHTTPServer
+	cd $(OUTPUTDIR) && python -m SimpleHTTPServer 8100
 
 devserver:
 	$(BASEDIR)/develop_server.sh restart
