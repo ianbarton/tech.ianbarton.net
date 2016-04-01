@@ -4,7 +4,7 @@
 AUTHOR = u"Ian Barton"
 SITENAME = u"ianbarton.net"
 #SITEURL = 'http://ianbarton.net'
-SITEURL = 'http://localhost'
+SITEURL = 'http://localhost:8100'
 
 #TEMPLATE_PAGES = {'contents/pages/about.html' : 'pages/about.html'}
 
@@ -35,7 +35,7 @@ SOCIAL = (('Twitter', 'http://twitter.com/ianbarton'),
 
 DEFAULT_PAGINATION = 10
 
-OUTPUT_PATH = "/srv/http"
+OUTPUT_PATH = "/home/ian/Documents/emacs/web_sites/ianbarton.net/pelican/blog/output"
 
 STATIC_PATHS = (['images', 'gpx'])
 
@@ -56,5 +56,7 @@ GOOGLE_CUSTOM_SEARCH_SIDEBAR = True
 GOOGLE_SITE_SEARCH_URL = "ianbarton.net"
 
 
-PLUGIN_PATH = "/home/ian/Dropbox/src/pelican-plugins"
-PLUGINS = ['yaml_importer', 'summary']
+PLUGIN_PATHS = ["/home/ian/src/pelican-plugins"]
+PLUGINS = ['org_reader', 'yaml_importer', 'summary']
+READERS = {'org': "org_reader"}
+ORG_READER_EMACS_LOCATION = '/home/ian/src/emacs/src/emacs'
