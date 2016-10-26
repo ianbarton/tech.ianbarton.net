@@ -1,0 +1,2 @@
+#+STARTUP: hidestars content indent
+#+OPTIONS: H:4 num:nil tags:nil toc:nil timestamps:t
