@@ -27,3 +27,8 @@
 /pelican/blog/pages/cycling/*.yml
 /pelican/blog/pages/mountaineering/*.yml
 /pelican/blog/output
+
+/nikola/cache
+/nikola/.doit.db
+/nikola/__pycache__
+/nikola/output
